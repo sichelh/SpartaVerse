@@ -38,6 +38,9 @@ public class BirdPlayerController : MonoBehaviour
         }
 
         rb.velocity = velocity;
+
+        float rotateY = Mathf.Clamp((rb.velocity.y * 10f), -90, 90);
+        transform.rotation = Quaternion.Euler(0, 0, rotateY);
     }
 
 }
