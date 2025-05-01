@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: BG_02
+  m_Name: button_red_up
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 573a60e933d3f0548b66e8d01dcb18cc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 719d3f6e04c53d142aa27bc7511ffda1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
