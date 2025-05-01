@@ -235,9 +235,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 148928942}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3413884594dbe246ad88fd12cf07779, type: 3}
+  m_Script: {fileID: 11500000, guid: d413ee40c4472ad4087c611e65ddb7f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goBirdGameUI: {fileID: 1299838624}
 --- !u!1 &216107788
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,7 +855,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 570411422}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 148928947}
+        m_TargetAssemblyTypeName: MainUIManager, Assembly-CSharp
+        m_MethodName: StartButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &570411422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2330,7 +2343,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 792902236}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 148928947}
+        m_TargetAssemblyTypeName: MainUIManager, Assembly-CSharp
+        m_MethodName: ExitBirdGameUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &792902236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2939,7 +2964,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1299838625}
-  - component: {fileID: 1299838626}
   m_Layer: 5
   m_Name: GoBirdGameUI
   m_TagString: Untagged
@@ -2972,20 +2996,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1299838626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1299838624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c14c4881ace4bf0419a7529ddb2bae5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startButton: {fileID: 570411421}
-  exitButton: {fileID: 792902235}
 --- !u!1 &1472226025
 GameObject:
   m_ObjectHideFlags: 0

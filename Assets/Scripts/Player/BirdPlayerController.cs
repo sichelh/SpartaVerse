@@ -11,16 +11,37 @@ public class BirdPlayerController : MonoBehaviour
     bool isDead = false;
     bool isFlap = false;
 
+    BirdSceneUIManager uiManager;
+
     private void Start()
     {
         rb = transform.GetComponent<Rigidbody2D>();
+        uiManager = FindObjectOfType<BirdSceneUIManager>();
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!GameManager.Instance.IsPlaying)
         {
-            isFlap = true;
+            rb.simulated = false;
+            return;
+        }
+
+        GameManager.Instance.StartGame();
+        rb.simulated = true;
+
+        if (isDead)
+        {
+            uiManager.OpenGameOverUI();
+            GameManager.Instance.EndGame();
+            
+        }
+        else
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                isFlap = true;
+            }
         }
     }
 
@@ -41,6 +62,14 @@ public class BirdPlayerController : MonoBehaviour
 
         float rotateY = Mathf.Clamp((rb.velocity.y * 10f), -90, 90);
         transform.rotation = Quaternion.Euler(0, 0, rotateY);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (isDead) return;
+
+        isDead = true;
+        
     }
 
 }

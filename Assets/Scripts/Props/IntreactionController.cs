@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class IntreactionController : MonoBehaviour
 {
-    private UIManager uiManager;
+    private MainUIManager mainUIManager;
 
     private void Awake()
     {
-        uiManager = FindObjectOfType<UIManager>();
+        mainUIManager = FindObjectOfType<MainUIManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            uiManager.OnUIState(UIState.GoBirdGameUI);
+            mainUIManager.OpenBirdGameUI();
         }
     }
 }
