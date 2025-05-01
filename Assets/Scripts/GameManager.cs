@@ -16,8 +16,6 @@ public class GameManager : MonoBehaviour
 
     public bool isRestart = false;
 
-    
-
     private void Awake()
     {
         if (Instance == null)
@@ -34,14 +32,13 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         currentState = GameState.Play;
+        isRestart = true;
     }
 
     public void EndGame()
     {
         currentState = GameState.GameOver;
         isRestart = true;
-
-       
     }
 
     public bool IsPlaying => currentState == GameState.Play;

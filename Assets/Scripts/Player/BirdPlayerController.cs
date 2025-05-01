@@ -26,15 +26,15 @@ public class BirdPlayerController : MonoBehaviour
             rb.simulated = false;
             return;
         }
-
         GameManager.Instance.StartGame();
         rb.simulated = true;
 
         if (isDead)
         {
+            ScoreManager.Instance.SaveBestScore();
+
             uiManager.OpenGameOverUI();
             GameManager.Instance.EndGame();
-            
         }
         else
         {

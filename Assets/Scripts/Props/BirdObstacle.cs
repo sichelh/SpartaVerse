@@ -15,6 +15,13 @@ public class BirdObstacle : MonoBehaviour
 
     [SerializeField] private float widthPadding = 4f;
 
+    ScoreManager scoreManager;
+
+    private void Start()
+    {
+        scoreManager = ScoreManager.Instance;
+    }
+
     public Vector3 SetRandomPosition(Vector3 lastPosition, int obstacleCount)
     {
         float holesize = Random.Range(holeSizeMin, holeSizeMax);
@@ -29,5 +36,15 @@ public class BirdObstacle : MonoBehaviour
         transform.position = setPosition;
 
         return setPosition;
+    }
+
+    private void OnTriggerExit2D (Collider2D collision)
+    {
+        if (!GameManager.Instance.IsPlaying) return;
+
+        if(collision.CompareTag("Player"))
+        {
+            scoreManager.AddScore(1);
+        }
     }
 }
