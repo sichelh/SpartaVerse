@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class MainPlayerController : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
     [SerializeField] private SpriteRenderer renderer;
