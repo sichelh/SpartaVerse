@@ -8,6 +8,7 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance { get; private set; }
 
     public int Score { get; private set; } = 0;
+    public bool result = false;
 
 
     private void Awake()
@@ -27,9 +28,9 @@ public class ScoreManager : MonoBehaviour
     {
         Score += scoreValue;
 
-        if(BirdSceneUIManager.Instance != null)
+        if(FlappyBirdUIManager.Instance != null)
         {
-            BirdSceneUIManager.Instance.UpdatePlayingScoreText();
+            FlappyBirdUIManager.Instance.UpdatePlayingScoreText();
         }
     }
 
@@ -51,7 +52,19 @@ public class ScoreManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("BestScore", Score);
             PlayerPrefs.Save();
+            result = true;
         }
+        result = false;
+    }
+
+    public void SaveLastScore()
+    {
+        PlayerPrefs.SetInt("LastScore", Score);
+    }
+
+    public int GetLastScore()
+    {
+        return PlayerPrefs.GetInt("LastScore", 0);
     }
 
 }

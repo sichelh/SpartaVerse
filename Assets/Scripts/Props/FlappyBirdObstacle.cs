@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BirdObstacle : MonoBehaviour
+public class FlappyBirdObstacle : MonoBehaviour
 {
     [SerializeField] private Transform topObject;
     [SerializeField] private Transform bottomObject;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BirdLooper : MonoBehaviour
+public class FlappyBirdBgLooper : MonoBehaviour
 {
     [SerializeField] private int bgCount = 5;
     
@@ -11,7 +11,7 @@ public class BirdLooper : MonoBehaviour
 
     void Start()
     {
-        BirdObstacle[] obstacles = GameObject.FindObjectsOfType<BirdObstacle>();
+        FlappyBirdObstacle[] obstacles = GameObject.FindObjectsOfType<FlappyBirdObstacle>();
         obstacleLastPosition = obstacles[0].transform.position;
         obstacleCount = obstacles.Length;
 
@@ -32,8 +32,8 @@ public class BirdLooper : MonoBehaviour
             collision.transform.position = position;
             return;
         }
-        
-        BirdObstacle obstacle = collision.GetComponent<BirdObstacle>();
+
+        FlappyBirdObstacle obstacle = collision.GetComponent<FlappyBirdObstacle>();
         if (obstacle)
         {
             obstacleLastPosition = obstacle.SetRandomPosition(obstacleLastPosition, obstacleCount);

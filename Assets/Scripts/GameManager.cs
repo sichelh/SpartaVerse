@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GameState
 { 
@@ -14,33 +15,51 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public GameState currentState { get; private set; } = GameState.Ready;
 
-    public bool isRestart = false;
+    float goMainDelay = 2f;
+
+    public bool IsPlaying => currentState == GameState.Play;
+    bool gameOver = false;
+
+    float elapsedTime = 0f;
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
-        else
+    }
+
+    private void Start()
+    {
+        ScoreManager.Instance.ResetScore();
+    }
+
+    private void Update()
+    {
+        if (gameOver)
         {
-            Destroy(gameObject);
+            elapsedTime += Time.deltaTime;
+
+            if (elapsedTime >= goMainDelay)
+            {
+                SceneManager.LoadScene("MainScene");
+            }
         }
     }
 
     public void StartGame()
     {
         currentState = GameState.Play;
-        isRestart = true;
     }
 
     public void EndGame()
     {
         currentState = GameState.GameOver;
-        isRestart = true;
+        ScoreManager.Instance.SaveBestScore();
+        ScoreManager.Instance.SaveLastScore();
+        gameOver = true;
     }
 
-    public bool IsPlaying => currentState == GameState.Play;
 
 }

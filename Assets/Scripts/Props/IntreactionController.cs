@@ -5,6 +5,7 @@ using UnityEngine;
 public class IntreactionController : MonoBehaviour
 {
     private MainUIManager mainUIManager;
+    
 
     private void Awake()
     {
@@ -17,5 +18,14 @@ public class IntreactionController : MonoBehaviour
         {
             mainUIManager.OpenBirdGameUI();
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            mainUIManager.ExitBirdGameUI();
+        }
+        
     }
 }

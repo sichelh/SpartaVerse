@@ -2,21 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BirdPlayerController : MonoBehaviour
+public class FlappyBirdPlayerController : MonoBehaviour
 {
     Rigidbody2D rb;
+
+    KeyBoardInput keyInputHandler;
+    MouseInput mouseInputHandler;
 
     [SerializeField] float playerSpeed = 1.0f;
     [SerializeField] float flapForce = 6f;
     bool isDead = false;
     bool isFlap = false;
 
-    BirdSceneUIManager uiManager;
+    FlappyBirdUIManager uiManager;
 
     private void Start()
     {
         rb = transform.GetComponent<Rigidbody2D>();
-        uiManager = FindObjectOfType<BirdSceneUIManager>();
+        uiManager = FindObjectOfType<FlappyBirdUIManager>();
+        keyInputHandler = GetComponent<KeyBoardInput>();
+        mouseInputHandler = GetComponent<MouseInput>();
+        isDead = false;
     }
 
     private void Update()
@@ -26,24 +32,24 @@ public class BirdPlayerController : MonoBehaviour
             rb.simulated = false;
             return;
         }
-        GameManager.Instance.StartGame();
+
         rb.simulated = true;
 
         if (isDead)
         {
-            ScoreManager.Instance.SaveBestScore();
-
-            uiManager.OpenGameOverUI();
             GameManager.Instance.EndGame();
+            uiManager.OpenGameOverUI();
         }
         else
         {
-            if (Input.GetMouseButtonDown(0))
+            if (keyInputHandler.IsActionPressed() || mouseInputHandler.IsActionPressed())
             {
                 isFlap = true;
             }
         }
+
     }
+    
 
     private void FixedUpdate()
     {
