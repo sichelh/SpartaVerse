@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance { get; private set; }
+    FlappyBirdUIManager flappyBirdUIManager;
 
     public int Score { get; private set; } = 0;
     public bool result = false;
@@ -22,15 +23,22 @@ public class ScoreManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        flappyBirdUIManager = FindObjectOfType<FlappyBirdUIManager>();
     }
 
     public void AddScore(int scoreValue)
     {
         Score += scoreValue;
 
-        if(FlappyBirdUIManager.Instance != null)
+        if(flappyBirdUIManager == null)
         {
-            FlappyBirdUIManager.Instance.UpdatePlayingScoreText();
+            flappyBirdUIManager = FindObjectOfType<FlappyBirdUIManager>();
+        }
+
+        if(flappyBirdUIManager != null)
+        {
+            flappyBirdUIManager.UpdatePlayingScoreText();
         }
     }
 
@@ -54,7 +62,11 @@ public class ScoreManager : MonoBehaviour
             PlayerPrefs.Save();
             result = true;
         }
-        result = false;
+        else
+        {
+            result = false;
+        }
+            
     }
 
     public void SaveLastScore()

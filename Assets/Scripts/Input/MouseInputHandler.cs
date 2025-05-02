@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MouseInput : MonoBehaviour, IPlayerInput
+public class MouseInputHandler : MonoBehaviour, IPlayerInputHandler
 {
     public Vector2 GetMoveMentInput()
     {

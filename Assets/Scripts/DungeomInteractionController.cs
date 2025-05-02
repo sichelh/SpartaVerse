@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IntreactionController : MonoBehaviour
+public class DungeomInteractionController : MonoBehaviour
 {
     private MainUIManager mainUIManager;
-    
 
     private void Awake()
     {
@@ -16,7 +15,7 @@ public class IntreactionController : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            mainUIManager.OpenBirdGameUI();
+            mainUIManager.EnterDungeon();
         }
     }
 
@@ -24,8 +23,8 @@ public class IntreactionController : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            mainUIManager.ExitBirdGameUI();
+            mainUIManager.ExitDungeon();
         }
-        
+
     }
 }

@@ -6,8 +6,8 @@ public class FlappyBirdPlayerController : MonoBehaviour
 {
     Rigidbody2D rb;
 
-    KeyBoardInput keyInputHandler;
-    MouseInput mouseInputHandler;
+    KeyBoardInputHandler keyInputHandler;
+    MouseInputHandler mouseInputHandler;
 
     [SerializeField] float playerSpeed = 1.0f;
     [SerializeField] float flapForce = 6f;
@@ -20,8 +20,8 @@ public class FlappyBirdPlayerController : MonoBehaviour
     {
         rb = transform.GetComponent<Rigidbody2D>();
         uiManager = FindObjectOfType<FlappyBirdUIManager>();
-        keyInputHandler = GetComponent<KeyBoardInput>();
-        mouseInputHandler = GetComponent<MouseInput>();
+        keyInputHandler = GetComponent<KeyBoardInputHandler>();
+        mouseInputHandler = GetComponent<MouseInputHandler>();
         isDead = false;
     }
 
@@ -49,8 +49,7 @@ public class FlappyBirdPlayerController : MonoBehaviour
         }
 
     }
-    
-
+ 
     private void FixedUpdate()
     {
         if (isDead) return;

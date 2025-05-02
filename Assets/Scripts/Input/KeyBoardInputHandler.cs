@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyBoardInput : MonoBehaviour, IPlayerInput
+public class KeyBoardInputHandler : MonoBehaviour, IPlayerInputHandler
 {
     public Vector2 GetMoveMentInput()
     {

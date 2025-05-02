@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MainPlayerController : MonoBehaviour
 {
-    IPlayerInput inputHandler;
+    KeyBoardInputHandler inputHandler;
     MainUIManager mainUIManager;
 
     [SerializeField] private float speed = 5f;
@@ -22,7 +22,7 @@ public class MainPlayerController : MonoBehaviour
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
-        inputHandler = GetComponent<IPlayerInput>();
+        inputHandler = GetComponent<KeyBoardInputHandler>();
         mainUIManager = FindObjectOfType<MainUIManager>();
     }
 
@@ -38,17 +38,20 @@ public class MainPlayerController : MonoBehaviour
     {
         if (inputHandler.IsActionPressed() && mainUIManager.isFlappyBirdUIActive)
         {
-            mainUIManager.GoToGame();
+            mainUIManager.LoadFlappyBirdGame();
+        }
+        if (inputHandler.IsActionPressed() && mainUIManager.isDungeonUIActive)
+        {
+            mainUIManager.LoadDungeomGame();
         }
     }
 
     void HandleJump()
     {
-        if(inputHandler.IsActionPressed() && !mainUIManager.isFlappyBirdUIActive)
+        if(inputHandler.IsActionPressed() && !mainUIManager.isFlappyBirdUIActive && !mainUIManager.isDungeonUIActive)
         {
             if (!isJump)
             {
-                Debug.Log("Jump");
                 StartCoroutine(JumpRoutine());
             }
         }

@@ -4,45 +4,63 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainUIManager : BaseUIManager
+public class MainUIManager : MonoBehaviour
 {
-    [SerializeField] private GameObject FlappyBirdGameUI;
     [SerializeField] private Text GameEndTitleText;
 
+    private UIState currentState;
+
     public bool isFlappyBirdUIActive = false;
+    public bool isDungeonUIActive = false;
 
-    GameEndUIManager gameEndUIManager;
-
-    private void Awake()
-    {
-        gameEndUIManager = GetComponent<GameEndUIManager>();
-    }
+    [SerializeField] private GameObject gameEndUI;
+    [SerializeField] private GameObject flappyBirdUI;
+    [SerializeField] private GameObject dungeonUI;
 
     private void Start()
     {
         if (ScoreManager.Instance != null)
         {
-            gameEndUIManager.OpenGameEndUI();
+            gameEndUI.SetActive(true);
+            gameEndUI.GetComponent<GameEndUI>().ToStringGameEndUI();
             GameEndTitleText.text = ScoreManager.Instance.result ? "Success update BestScore!" : "Fail update BestScore...";
         }
-
-        
     }
 
-    public void OpenBirdGameUI()
+    public void EnterFlappyBird()
     {
-        OnUI(FlappyBirdGameUI);
+        flappyBirdUI.SetActive(true);
         isFlappyBirdUIActive = true;
     }
 
-    public void ExitBirdGameUI()
+    public void ExitFlappyBird()
     {
-        ExitUI(FlappyBirdGameUI);
-        isFlappyBirdUIActive = false;
+        if (flappyBirdUI != null)
+        {
+            flappyBirdUI.SetActive(false);
+            isFlappyBirdUIActive = false;
+        }
     }
 
-    public void GoToGame()
+    public void EnterDungeon()
     {
-        SceneManager.LoadScene("FlappyBirdGameScene");
+        dungeonUI.SetActive(true);
+        isDungeonUIActive = true;
+    }
+
+    public void ExitDungeon()
+    {
+        dungeonUI.SetActive(false);
+        isDungeonUIActive = false;
+    }
+
+    public void LoadFlappyBirdGame()
+    {
+        flappyBirdUI.GetComponent<FlappyBirdUI>().LoadFlappyBirdScene();
+    }
+
+    public void LoadDungeomGame()
+    {
+        dungeonUI.GetComponent<DungeonUI>().LoadDungeonScene();
     }
 }
