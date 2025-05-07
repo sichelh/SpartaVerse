@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class FlappyBirdIntreactionController : MonoBehaviour
 {
-    private MainUIManager mainUIManager;
-
-    private void Awake()
-    {
-        mainUIManager = FindObjectOfType<MainUIManager>();
-    }
+    [SerializeField] private MainUIManager mainUIManager;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
