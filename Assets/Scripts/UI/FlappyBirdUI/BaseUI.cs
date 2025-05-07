@@ -6,7 +6,10 @@ public enum UIState
 {
     FlappyBirdGameStart,
     FlappyBirdGame,
-    FlappyBirdGameOver
+    FlappyBirdGameOver,
+    DungeonGameStart,
+    DungeonGame,
+    DungeonGameOver
 }
 
 public abstract class BaseUI : MonoBehaviour
