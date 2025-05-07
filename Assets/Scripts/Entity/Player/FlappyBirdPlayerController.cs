@@ -9,6 +9,8 @@ public class FlappyBirdPlayerController : MonoBehaviour
     KeyBoardInputHandler keyInputHandler;
     MouseInputHandler mouseInputHandler;
 
+    Animator animator;
+
     [SerializeField] float playerSpeed = 1.0f;
     [SerializeField] float flapForce = 6f;
     bool isDead = false;
@@ -18,6 +20,7 @@ public class FlappyBirdPlayerController : MonoBehaviour
 
     private void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         rb = transform.GetComponent<Rigidbody2D>();
         uiManager = FindObjectOfType<FlappyBirdUIManager>();
         keyInputHandler = GetComponent<KeyBoardInputHandler>();
@@ -39,6 +42,7 @@ public class FlappyBirdPlayerController : MonoBehaviour
         {
             GameManager.Instance.EndGame();
             uiManager.OpenGameOverUI();
+            animator.SetBool("isDead", true);
         }
         else
         {

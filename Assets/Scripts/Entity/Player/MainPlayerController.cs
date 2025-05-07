@@ -8,6 +8,8 @@ public class MainPlayerController : MonoBehaviour
     KeyBoardInputHandler inputHandler;
     MainUIManager mainUIManager;
 
+    Animator animator;
+
     [SerializeField] private float speed = 5f;
     [SerializeField] private SpriteRenderer renderer;
     [SerializeField] private float jumpPower = 1.5f;
@@ -24,6 +26,7 @@ public class MainPlayerController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         inputHandler = GetComponent<KeyBoardInputHandler>();
         mainUIManager = FindObjectOfType<MainUIManager>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -32,6 +35,7 @@ public class MainPlayerController : MonoBehaviour
         HandleInteraction();
         Rotate(lookDirection);
         HandleJump();
+        
     }
 
     void HandleInteraction()
@@ -93,6 +97,8 @@ public class MainPlayerController : MonoBehaviour
     void HandleAction()
     {
         Vector2 movement = inputHandler.GetMoveMentInput();
+
+        animator.SetBool("isMove", movement.magnitude > 0.5f);
 
         // 움직임이 있을 때만 보는 방향 갱신
         if (movement != Vector2.zero)
